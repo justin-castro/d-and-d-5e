@@ -1,0 +1,7 @@
+.characterList{
+    display: flex;
+    flex-wrap: wrap;
+}
+.characterList > a {
+    flex-basis: 30%;
+}
