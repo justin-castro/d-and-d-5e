@@ -10,12 +10,14 @@ import Contact from "./routes/contact";
 import Classes, {classLoader} from "./routes/class";
 import Feats from "./routes/feat";
 import ChosenClass from "./routes/chosen-class";
+import Home from "./routes/home";
 
 const router = createBrowserRouter([
   {
     path: "/",
     element: <Root />,
     errorElement: <ErrorPage />,
+    index: <Home />,
     children: [
       {
         path: "contact",
@@ -29,8 +31,8 @@ const router = createBrowserRouter([
           {
             path: ":index",
             element: <ChosenClass />,
-          }
-        ]
+          },
+        ],
       },
       {
         path: "feat",
