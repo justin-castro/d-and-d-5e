@@ -9,7 +9,7 @@ import ErrorPage from "./error-page";
 import Contact from "./routes/contact";
 import Classes, {classLoader} from "./routes/class";
 import Feats from "./routes/feat";
-import ChosenClass from "./routes/chosen-class";
+import ChosenClass, {chosenClassLoader} from "./routes/chosen-class";
 import Home from "./routes/home";
 
 const router = createBrowserRouter([
@@ -31,6 +31,7 @@ const router = createBrowserRouter([
           {
             path: ":index",
             element: <ChosenClass />,
+            loader: chosenClassLoader,
           },
         ],
       },
