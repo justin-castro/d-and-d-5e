@@ -1,5 +1,6 @@
 import { useParams } from "react-router-dom";
 import { useLoaderData } from "react-router-dom";
+import ChosenClassLevel from "./class-level";
 
 export const chosenClassLoader = async ({ params }) => {
   const res = await fetch(
@@ -21,6 +22,22 @@ export default function ChosenClass() {
       <div className="proficiency-choices-card">
         <h2>Proficiency Choices</h2>
         <p>{data.proficiency_choices[0].desc}</p>
+        {/* <form className="proficiency-choices">
+          <select name="" id="">
+            {data.proficiency_choices[0].from.options.map((option) => {
+              return (
+                <option key={option.item.index}>{option.item.name}</option>
+              );
+            })}
+          </select>
+          <select name="" id="">
+            {data.proficiency_choices[0].from.options.map((option) => {
+              return (
+                <option key={option.item.index}>{option.item.name}</option>
+              );
+            })}
+          </select>
+        </form> */}
         <div className="proficiency-choices">
           {data.proficiency_choices[0].from.options.map((option) => {
             return <button key={option.item.index}>{option.item.name}</button>;
@@ -67,6 +84,9 @@ export default function ChosenClass() {
                 </div>
               );
             })}
+          </div>
+          <div className="class-levels">
+            {/* <ChosenClassLevel /> */}
           </div>
         </div>
       </div>
