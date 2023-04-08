@@ -1,5 +1,5 @@
 import { useLoaderData } from "react-router-dom";
-import './chosenClass.css'
+import "./chosenClass.css";
 // import ChosenClassLevel from "./class-level";
 
 export const chosenClassLoader = async ({ params }) => {
@@ -16,34 +16,22 @@ export default function ChosenClass() {
   return (
     <>
       <h2>{data.name}</h2>
-      <p>
+      {/* Hit Die */}
+      <div>
         Starting Hit Die: <span className="hit-die">{data.hit_die}</span>
-      </p>
+      </div>
+      {/* Start of Proficiency Choices */}
       <div className="proficiency-choices-card">
-        <h2>Proficiency Choices</h2>
-        <p>{data.proficiency_choices[0].desc}</p>
-        {/* <form className="proficiency-choices">
-          <select name="" id="">
-            {data.proficiency_choices[0].from.options.map((option) => {
-              return (
-                <option key={option.item.index}>{option.item.name}</option>
-              );
-            })}
-          </select>
-          <select name="" id="">
-            {data.proficiency_choices[0].from.options.map((option) => {
-              return (
-                <option key={option.item.index}>{option.item.name}</option>
-              );
-            })}
-          </select>
-        </form> */}
+        <h2>Skills</h2>
+        <div>{data.proficiency_choices[0].desc}</div>
+        {/* Skill Options */}
         <div className="proficiency-choices">
           {data.proficiency_choices[0].from.options.map((option) => {
             return <button key={option.item.index}>{option.item.name}</button>;
           })}
         </div>
       </div>
+      {/* Proficiencies */}
       <div className="proficiency-card">
         <h2>Proficiencies</h2>
         <ul className="proficiency-list">
@@ -56,26 +44,41 @@ export default function ChosenClass() {
           })}
         </ul>
       </div>
+      {/* Start of Saving Throws */}
       <div className="saving-throws-card">
         <h2>Saving Throws</h2>
         <div className="saving-throws">
-          {data.saving_throws.map((saving) => {
-            return <p key={saving.index}>{saving.name}</p>;
-          })}
+          <ul>
+            {data.saving_throws.map((saving) => {
+              return (
+                <>
+                  <li key={saving.index}>{saving.name}</li>
+                </>
+              );
+            })}
+          </ul>
         </div>
       </div>
+      {/* Start of Starting Equipment */}
       <div className="starting-equipment-card">
         <h2>Starting Equipment</h2>
         <div className="starting-equipment">
-          {data.starting_equipment.map((equipment) => {
-            return <p>{equipment.equipment.name}</p>;
-          })}
+          <ul>
+            {data.starting_equipment.map((equipment) => {
+              return (
+                <>
+                  <li>{equipment.equipment.name}</li>
+                </>
+              );
+            })}
+          </ul>
           <h3>Additional Starting Equipment Options</h3>
           <div>
             {data.starting_equipment_options.map((equipment) => {
+              // Map over starting equipment options
               return (
                 <div key={equipment.desc}>
-                  <p>{equipment.desc}</p>
+                  <div>{equipment.desc}</div>
                   <div>
                     {/* Map over equipment to get the names  */}
                     {/* Below does not work */}
@@ -103,7 +106,25 @@ export default function ChosenClass() {
           <div className="class-levels">{/* <ChosenClassLevel /> */}</div>
         </div>
       </div>
-      {/* <div className="chosenClassLevel">{console.log(level)}</div> */}
+
+      {/* Start of Spells */}
+      {data.spellcasting ? (
+        <>
+          <br />
+          <hr />
+          <div className="spellcasting">
+            <h2>Spellcasting</h2>
+            {data.spellcasting.info.map((spells) => {
+              return (
+                <>
+                  <h3 key={spells.name}>{spells.name}</h3>
+                  <p>{spells.desc}</p>
+                </>
+              );
+            })}
+          </div>
+        </>
+      ) : null}
     </>
   );
 }

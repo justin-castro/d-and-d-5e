@@ -8,6 +8,7 @@ export default function Classes() {
     return (
       <>
         <h1>Classes</h1>
+        <div>Choose a Class to learn more</div>
         <nav className="characterNavigation">
           <ul className="characterList">
             {classes.map((item, index) => {

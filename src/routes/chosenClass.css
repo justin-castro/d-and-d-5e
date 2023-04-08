@@ -7,3 +7,10 @@
 .proficiency-list > * {
     padding: 4px 6px;
 }
+.saving-throws{
+    display: flex;
+    justify-content: space-evenly;
+}
+p {
+    text-align: start;;
+}
