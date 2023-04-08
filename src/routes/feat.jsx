@@ -1,12 +1,13 @@
 import { useLoaderData } from "react-router-dom";
 import { NavLink, Outlet } from "react-router-dom";
+import './feat.css'
 
 export default function Feats() {
   const feats = useLoaderData()
   return (
     <>
       <h1>Feats</h1>
-      <div>{feats.map((item, index) => {
+      <ul className="featList">{feats.map((item, index) => {
         return (
           <>
             <NavLink to={item.index} key={index}>
@@ -15,7 +16,7 @@ export default function Feats() {
             <br />
             </>
         );
-      })}</div>
+      })}</ul>
     </>
   );
 }

@@ -1,0 +1,10 @@
+.featList {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+}
+
+.featList > a {
+  margin: 12px 0px;
+  flex-basis: 50%;
+}
