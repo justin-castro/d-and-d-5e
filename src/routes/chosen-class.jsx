@@ -1,4 +1,5 @@
 import { useLoaderData } from "react-router-dom";
+import './chosenClass.css'
 // import ChosenClassLevel from "./class-level";
 
 export const chosenClassLoader = async ({ params }) => {
@@ -50,7 +51,6 @@ export default function ChosenClass() {
             return (
               <>
                 <li key={proficiency.index}>{proficiency.name}</li>
-                <br />
               </>
             );
           })}
