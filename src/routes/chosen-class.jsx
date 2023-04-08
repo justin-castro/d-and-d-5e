@@ -47,7 +47,12 @@ export default function ChosenClass() {
         <h2>Proficiencies</h2>
         <ul className="proficiency-list">
           {data.proficiencies.map((proficiency) => {
-            return <li key={proficiency.index}>{proficiency.name}</li>;
+            return (
+              <>
+                <li key={proficiency.index}>{proficiency.name}</li>
+                <br />
+              </>
+            );
           })}
         </ul>
       </div>
