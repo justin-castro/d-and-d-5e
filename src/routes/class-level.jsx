@@ -12,9 +12,6 @@ export const chosenClassLevelLoader = async ({ params }) => {
 export default function ChosenClassLevel() { 
     const { level } = useLoaderData();
     return (
-        <div className="chosenClassLevel">
-            {console.log(level)}
-        </div>
-
+        <></>
     )
 }

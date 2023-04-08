@@ -8,8 +8,9 @@ import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import ErrorPage from "./error-page";
 import Contact from "./routes/contact";
 import Classes, {classLoader} from "./routes/class";
-import Feats from "./routes/feat";
-import ChosenClass, {chosenClassLoader} from "./routes/chosen-class";
+import Feats, {featLoader} from "./routes/feat";
+import ChosenClass, { chosenClassLoader } from "./routes/chosen-class";
+import ChosenFeat, {chosenFeatLoader} from "./routes/chosen-feat";
 import Home from "./routes/home";
 import ChosenClassLevel, { chosenClassLevelLoader } from "./routes/class-level";
 
@@ -18,8 +19,8 @@ const router = createBrowserRouter([
     path: "/",
     element: <Root />,
     errorElement: <ErrorPage />,
-    index: <Home />,
     children: [
+    { index: true, element: <Home/> },
       {
         path: "contact",
         element: <Contact />,
@@ -33,6 +34,7 @@ const router = createBrowserRouter([
             path: ":index",
             element: <ChosenClass />,
             loader: chosenClassLoader,
+            // chosenClassLevelLoader,
             // children: [
             //   {
             //     element: <ChosenClassLevel />,
@@ -45,7 +47,13 @@ const router = createBrowserRouter([
       {
         path: "feat",
         element: <Feats />,
+        loader: featLoader,
       },
+      {
+        path: "feat/:index",
+        element: <ChosenFeat />,
+        loader: chosenFeatLoader,
+      }
     ],
   },
 ]);

@@ -1,6 +1,5 @@
-import { useParams } from "react-router-dom";
 import { useLoaderData } from "react-router-dom";
-import ChosenClassLevel from "./class-level";
+// import ChosenClassLevel from "./class-level";
 
 export const chosenClassLoader = async ({ params }) => {
   const res = await fetch(
@@ -10,9 +9,9 @@ export const chosenClassLoader = async ({ params }) => {
   const data = await res.json();
   return { data };
 };
+
 export default function ChosenClass() {
-  const { data } = useLoaderData();
-  // console.log(data);
+  const { data } = useLoaderData(chosenClassLoader);
   return (
     <>
       <h2>{data.name}</h2>
@@ -75,21 +74,31 @@ export default function ChosenClass() {
                   <div>
                     {/* Map over equipment to get the names  */}
                     {/* Below does not work */}
-                    {/* {equipment.from.options
-                      ? equipment.from.options.map((option) => {
-                          return <button>{option.count}</button>;
-                        })
-                      : <p/>} */}
+                    {/* map over equipment to get the option choices if any */}
+                    {/* {equipment.from.option_set_type === "options_array" ? (
+                      equipment.from.options.map((option) => {
+                        option.option_type === "counted_reference" ? (
+                          <button key={option.of.index}>{option.count}</button>
+                        ) : (
+                          <button key={option.choice.from.equipment_category.index}>
+                              {option.choice.desc ? option.choice.desc : 'none'}
+                          </button>
+                        );
+                      })
+                    ) : (
+                      <button key={equipment.from.equipment_category.index}>
+                          {equipment.from.equipment_category.name}
+                      </button>
+                    )} */}
                   </div>
                 </div>
               );
             })}
           </div>
-          <div className="class-levels">
-            {/* <ChosenClassLevel /> */}
-          </div>
+          <div className="class-levels">{/* <ChosenClassLevel /> */}</div>
         </div>
       </div>
+      {/* <div className="chosenClassLevel">{console.log(level)}</div> */}
     </>
   );
 }
