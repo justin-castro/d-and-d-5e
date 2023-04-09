@@ -1,18 +1,34 @@
 import { useLoaderData } from "react-router-dom";
 import "./chosenClass.css";
+import { NavLink } from "react-router-dom";
 // import ChosenClassLevel from "./class-level";
 
 export const chosenClassLoader = async ({ params }) => {
   const res = await fetch(
     `https://www.dnd5eapi.co/api/classes/${params.index}`
   );
-  if (!res.ok) throw new Error("Something went Wrong");
+  const lev = await fetch(
+    `https://www.dnd5eapi.co/api/classes/${params.index}` + "/levels"
+  );
+  if (!res.ok && !lev.ok) throw new Error("Something went Wrong");
   const data = await res.json();
-  return { data };
+  const levels = await lev.json();
+  return { data, levels };
+  
 };
 
+// export const chosenClassLevelLoader = async ({ params }) => {
+//   const res = await fetch(
+//     `https://www.dnd5eapi.co/api/classes/${params.index}` + "/levels"
+//   );
+//   if (!res.ok) throw new Error("Something went Wrong");
+//   const levels = await res.json();
+//     return { levels };
+//   }
+// ;
+
 export default function ChosenClass() {
-  const { data } = useLoaderData(chosenClassLoader);
+  const { data, levels } = useLoaderData(chosenClassLoader);
   return (
     <>
       <h2>{data.name}</h2>
@@ -48,7 +64,7 @@ export default function ChosenClass() {
       <div className="saving-throws-card">
         <h2>Saving Throws</h2>
         <div className="saving-throws">
-          <ul>
+          <ul className="saving-throw-item">
             {data.saving_throws.map((saving) => {
               return (
                 <>
@@ -63,7 +79,7 @@ export default function ChosenClass() {
       <div className="starting-equipment-card">
         <h2>Starting Equipment</h2>
         <div className="starting-equipment">
-          <ul>
+          <ul className="equipment-list">
             {data.starting_equipment.map((equipment) => {
               return (
                 <>
@@ -105,6 +121,36 @@ export default function ChosenClass() {
           </div>
           <div className="class-levels">{/* <ChosenClassLevel /> */}</div>
         </div>
+      </div>
+
+      <div className="levels-card">
+        <h2>Levels</h2>
+          {levels.map((level) => {
+            return (
+              <>
+                <p>
+                  Level {level.level}:&nbsp;
+                  <>
+                    {level.features[0]
+                      ? level.features.map((feat) => {
+                          return (
+                            <>
+                              <NavLink
+                                to={"../../feat/" + feat.index}
+                                key={feat.index}
+                              >
+                                {feat.name}
+                              </NavLink>
+                            </>
+                          );
+                        })
+                      : "No Feat"}
+                  </>
+                  {/* TODO add class feat if class_specific is set */}
+                </p>
+              </>
+            );
+          })}
       </div>
 
       {/* Start of Spells */}

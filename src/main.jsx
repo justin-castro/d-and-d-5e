@@ -34,7 +34,6 @@ const router = createBrowserRouter([
             path: ":index",
             element: <ChosenClass />,
             loader: chosenClassLoader,
-            // chosenClassLevelLoader,
             // children: [
             //   {
             //     element: <ChosenClassLevel />,

@@ -7,9 +7,21 @@
 .proficiency-list > * {
     padding: 4px 6px;
 }
+.proficiency-choices, .proficiency-choices > *{
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    flex-basis: 30%;
+    margin: 10px;
+}
 .saving-throws{
     display: flex;
     justify-content: space-evenly;
+}
+.equipment-list, .saving-throw-item{
+    display: flex;
+    justify-content: space-evenly;
+    flex-basis: 40%;
 }
 p {
     text-align: start;;
